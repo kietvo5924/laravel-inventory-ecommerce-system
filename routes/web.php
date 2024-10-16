@@ -8,6 +8,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\OrderController;
@@ -88,4 +89,5 @@ Route::middleware(['auth', CheckRole::class . ':customer'])->group(function () {
     Route::get('/reviews/create/{order_id}/{product_id}', [ProductReviewController::class, 'createReview'])->name('reviews.create');
     Route::post('/reviews', [ProductReviewController::class, 'storeReview'])->name('reviews.store');
     Route::get('/api/customer-pending-count', [OrderController::class, 'getPendingCount']);
+    Route::post('/contact/submit', [ContactController::class, 'sendContactEmail'])->name('contact.submit');
 });
